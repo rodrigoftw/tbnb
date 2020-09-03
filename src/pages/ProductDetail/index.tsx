@@ -84,7 +84,6 @@ const ProductDetail: React.FC = () => {
 
   const navigateToEditProduct = useCallback(
     (productParams: ProductParams) => {
-      console.log(product);
       navigate('EditProduct', { productParams });
     },
     [navigate],

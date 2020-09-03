@@ -27,6 +27,7 @@ import {
   InfoButton,
   Content,
 } from './styles';
+
 import { ProductParams } from '../ProductDetail';
 import { ProductFormData } from '../AddProduct';
 
@@ -44,15 +45,14 @@ const EditProduct: React.FC = () => {
 
   const route = useRoute();
   const routeParams = route.params as Params;
-  console.log('ROUTE PARAMS:', routeParams.productParams);
 
   const navigateBack = useCallback(() => {
     goBack();
   }, [goBack]);
 
-  const showInfoAlert = useCallback(() => {
+  const showInfoAlert = () => {
     Alert.alert('All fields are required.');
-  }, []);
+  };
 
   const returnToProductList = useCallback(() => {
     reset({
@@ -161,11 +161,11 @@ const EditProduct: React.FC = () => {
                 returnKeyType="next"
                 multiline={true}
                 containerStyle={{
-                  height: 150,
+                  height: 128,
                   paddingTop: 16,
                   alignItems: 'flex-start',
                   isMultiline: true,
-                  numberOfLines: 5,
+                  numberOfLines: 4,
                   width: 'auto',
                 }}
                 onSubmitEditing={() => {

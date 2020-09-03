@@ -1,11 +1,13 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   TextInput,
   Alert,
+  StyleSheet,
 } from 'react-native';
+
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
@@ -14,6 +16,7 @@ import * as Yup from 'yup';
 import api from '../../services/api';
 
 import Input from '../../components/Input';
+import CurrencyInput from '../../components/CurrencyInput';
 import Button from '../../components/Button';
 
 import { Feather } from '@expo/vector-icons';
@@ -47,6 +50,10 @@ const AddProduct: React.FC = () => {
   const navigateBack = useCallback(() => {
     goBack();
   }, [goBack]);
+
+  const showInfoAlert = () => {
+    Alert.alert('All fields are required.');
+  };
 
   const returnToProductList = useCallback(() => {
     reset({
@@ -104,6 +111,26 @@ const AddProduct: React.FC = () => {
     [goBack],
   );
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    input: {
+      backgroundColor: 'white',
+      borderColor: 'gray',
+      borderWidth: 1,
+      fontSize: 20,
+      marginBottom: 20,
+      marginTop: 20,
+      padding: 20,
+      textAlign: 'right',
+      width: 300,
+    },
+  });
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -115,7 +142,9 @@ const AddProduct: React.FC = () => {
           <Feather name="arrow-left" size={22} color="#f4ede8" />
         </BackButton>
         <HeaderTitle>New Product</HeaderTitle>
-        <InfoButton></InfoButton>
+        <InfoButton onPress={() => showInfoAlert()}>
+          <Feather name="info" size={22} color="#f4ede8" />
+        </InfoButton>
       </Header>
       <Container>
         <ScrollView
@@ -186,15 +215,16 @@ const AddProduct: React.FC = () => {
                 }}
               />
 
-              <Input
+              <CurrencyInput
                 ref={priceInputRef}
-                keyboardType="decimal-pad"
+                keyboardType="numeric"
                 name="price"
                 icon="dollar-sign"
                 placeholder="Price"
                 returnKeyType="send"
                 onSubmitEditing={() => formRef.current?.submitForm()}
               />
+
               <Button
                 onPress={() => {
                   formRef.current?.submitForm();
