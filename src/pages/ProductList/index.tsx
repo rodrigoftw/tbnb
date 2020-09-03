@@ -7,6 +7,7 @@ import api from '../../services/api';
 import {
   Container,
   Header,
+  CommonHeaderButton,
   HeaderTitle,
   AddProductButton,
   ProductsListWrapper,
@@ -40,9 +41,13 @@ export interface Product {
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const { reset, navigate } = useNavigation();
+  const { navigate } = useNavigation();
 
   useEffect(() => {
+    loadList();
+  }, []);
+
+  function loadList() {
     api.get('/products').then((response) => {
       setProducts(
         response.data.map((product: Product) => ({
@@ -51,14 +56,7 @@ const ProductList: React.FC = () => {
         })),
       );
     });
-  }, []);
-
-  const navigateToSignIn = useCallback(() => {
-    reset({
-      routes: [{ name: 'SignIn' }],
-      index: 0,
-    });
-  }, [reset]);
+  }
 
   const navigateToAddProduct = useCallback(() => {
     navigate('AddProduct');
@@ -89,22 +87,20 @@ const ProductList: React.FC = () => {
   const removeProduct = useCallback(async (productId: string) => {
     try {
       await api.delete(`/products/${productId}`).then(() => {
-        const updatedProducts = products.filter(
-          (productItem) => productItem.id !== productId,
-        );
-        setProducts(updatedProducts);
+        loadList();
       });
     } catch (error) {
-      Alert.alert(error);
+      Alert.alert(
+        'Error removing product.',
+        'An error ocuured while removing this product, please check your connection and try again.',
+      );
     }
   }, []);
 
   return (
     <Container>
       <Header>
-        <AddProductButton onPress={() => navigateToSignIn()}>
-          <Feather name="log-out" size={22} color="#f4ede8" />
-        </AddProductButton>
+        <CommonHeaderButton></CommonHeaderButton>
         <HeaderTitle>Inventory Control</HeaderTitle>
         <AddProductButton onPress={() => navigateToAddProduct()}>
           <Feather name="plus" size={22} color="#f4ede8" />

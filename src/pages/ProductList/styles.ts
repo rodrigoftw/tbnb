@@ -20,7 +20,7 @@ export const Header = styled.View`
   align-items: center;
 `;
 
-export const LogOutButton = styled.TouchableOpacity``;
+export const CommonHeaderButton = styled.TouchableOpacity``;
 
 export const HeaderTitle = styled.Text`
   color: #f4ede8;
