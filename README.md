@@ -6,13 +6,13 @@
 
 ## About the project
 
-<p>This is a project requested by the recruiting process at TurnoverBnB. The project contains two main folders, `api` and `mobile`. Each folder represents the api project and the mobile project, according to their respective names. This project considers you have a local MYSQL server up and running before proceeding.</p>
+This is a project requested by the recruiting process at TurnoverBnB. The project contains two main folders, `api` and `mobile`. Each folder represents the api project and the mobile project, according to their respective names. This project considers you have a local MYSQL server up and running before proceeding.
 
 ## Getting started
 
-<p>First of all, you must install all dependencies from both projects.
+First of all, you must install all dependencies from both projects.
 On `mobile`, run `yarn` to install all its dependencies.
-On `api`, run `composer install` to install all its dependencies.</p>
+On `api`, run `composer install` to install all its dependencies.
 
 ## API Routes
 
