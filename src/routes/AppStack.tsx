@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -12,6 +13,7 @@ const { Navigator, Screen } = createStackNavigator();
 function AppStack() {
   return (
     <NavigationContainer>
+      <StatusBar style="light" />
       <Navigator screenOptions={{ headerShown: false }}>
         <Screen name="ProductList" component={ProductList} />
         <Screen name="ProductDetail" component={ProductDetail} />
