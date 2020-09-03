@@ -44,6 +44,10 @@ const ProductList: React.FC = () => {
   const { reset, navigate } = useNavigation();
 
   useEffect(() => {
+    loadList();
+  }, []);
+
+  function loadList() {
     api.get('/products').then((response) => {
       setProducts(
         response.data.map((product: Product) => ({
@@ -52,14 +56,7 @@ const ProductList: React.FC = () => {
         })),
       );
     });
-  }, []);
-
-  const navigateToSignIn = useCallback(() => {
-    reset({
-      routes: [{ name: 'SignIn' }],
-      index: 0,
-    });
-  }, [reset]);
+  }
 
   const navigateToAddProduct = useCallback(() => {
     navigate('AddProduct');
@@ -90,13 +87,13 @@ const ProductList: React.FC = () => {
   const removeProduct = useCallback(async (productId: string) => {
     try {
       await api.delete(`/products/${productId}`).then(() => {
-        const updatedProducts = products.filter(
-          (productItem) => productItem.id !== productId,
-        );
-        setProducts(updatedProducts);
+        loadList();
       });
     } catch (error) {
-      Alert.alert(error);
+      Alert.alert(
+        'Error removing product.',
+        'An error ocuured while removing this product, please check your connection and try again.',
+      );
     }
   }, []);
 
