@@ -16,7 +16,7 @@ On `api`, run `composer install` to install all its dependencies.
 
 ## API Routes
 
-The routes created for the api are listed below:
+The routes created for the API are listed below:
 
 **`GET    /products`**: Lists all products from the API;
 
