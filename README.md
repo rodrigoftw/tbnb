@@ -18,13 +18,13 @@ On `api`, run `composer install` to install all its dependencies.
 
 The routes created for the API are listed below:
 
-**`GET    /products`**: Lists all products from the API;
+**`GET /products`**: Lists all products from the API;
 
-**`GET    /products/:id`**: Retrieves one product from the API based on its `id`;
+**`GET /products/:id`**: Retrieves one product from the API based on its `id`;
 
-**`POST   /products`**: Creates a new product on the API;
+**`POST /products`**: Creates a new product on the API;
 
-**`PUT    /products/:id`**: Updates a product on the API;
+**`PUT /products/:id`**: Updates a product on the API;
 
 **`DELETE /products/:id`**: Deletes a product from the API based on its `id`.
 
