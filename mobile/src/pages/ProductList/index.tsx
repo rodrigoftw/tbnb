@@ -41,7 +41,7 @@ export interface Product {
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const { reset, navigate } = useNavigation();
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     loadList();
