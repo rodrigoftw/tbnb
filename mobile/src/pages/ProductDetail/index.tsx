@@ -32,8 +32,8 @@ export interface ProductParams {
   name: string;
   description: string;
   category: string;
-  amount: number;
-  price: number;
+  amount: string;
+  price: string;
 }
 
 const ProductDetail: React.FC = () => {
@@ -73,8 +73,8 @@ const ProductDetail: React.FC = () => {
       name: product.name,
       description: product.description,
       category: product.category,
-      amount: product.amount,
-      price: product.price,
+      amount: String(product.amount),
+      price: String(product.price),
     });
   }, [product]);
 
